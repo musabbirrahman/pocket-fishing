@@ -31,21 +31,21 @@ canvas{width:100%;height:360px;display:block;border-radius:16px;border:2px solid
 .slot.off .em{filter:grayscale(1) brightness(.3);opacity:.5}
 .slot.off{color:var(--mute)}
 button.sm{font:inherit;background:none;border:1px solid var(--line);color:var(--mute);border-radius:8px;padding:2px 8px;cursor:pointer}
-#baits{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px;color:var(--mute)}#baits button{font:inherit;padding:4px 10px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}#baits button.on{border-color:var(--acc)}.jr{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}.jr .em{font-size:26px}#bm,#sm{min-height:18px;font-size:13px;color:var(--acc);margin:4px 0}.off{opacity:.5}*{-webkit-tap-highlight-color:transparent}body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}canvas,button{outline:none}button:focus-visible{outline:2px solid var(--acc)}#toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--card);border:2px solid var(--acc);border-radius:14px;padding:8px 14px;font-size:14px;max-width:90%;text-align:center;opacity:0;transition:opacity .4s;pointer-events:none;z-index:9}details{margin:6px 0}summary{cursor:pointer;font-size:14px;padding:4px 0}</style>
+#baits{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px;color:var(--mute)}#baits button{font:inherit;padding:4px 10px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}#baits button.on{border-color:var(--acc)}.jr{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}.jr .em{font-size:26px}#bm,#sm,#cm{min-height:18px;font-size:13px;color:var(--acc);margin:4px 0}.off{opacity:.5}*{-webkit-tap-highlight-color:transparent}body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}canvas,button{outline:none}button:focus-visible{outline:2px solid var(--acc)}#toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--card);border:2px solid var(--acc);border-radius:14px;padding:8px 14px;font-size:14px;max-width:90%;text-align:center;opacity:0;transition:opacity .4s;pointer-events:none;z-index:9}details{margin:6px 0}summary{cursor:pointer;font-size:14px;padding:4px 0}textarea,input{-webkit-user-select:text;user-select:text}</style>
 </head>
 <body>
 <main>
 <h1>🎣 Pocket Fishing</h1>
 <p class="sub">Tap where you want to cast (or Space). Pick a bait: fish drift toward what they like. Turn sound on for nature ambience. When "!" appears, tap to reel in. Some fish only bite by day or night, and rain makes them hungrier.</p>
 <div id="tabs"></div>
-<div id="hud"><span id="clock"></span><span id="wx"></span><button class="sm" id="snd">🔇 Sound off</button></div>
+<div id="hud"><span id="clock"></span><span id="wx"></span><span><button class="sm" id="snd">🔇 Sound off</button> <button class="sm" id="mus">🎵 Music off</button> <input type="range" id="vol" min="0" max="100" value="40" style="width:70px;vertical-align:middle"></span></div>
 <canvas id="c"></canvas>
 <div id="baits"></div><div id="bm"></div><div id="msg">Tap to cast your line.</div>
 <div class="card">
 <h2><span>Collection <span id="cnt"></span></span><button class="sm" id="reset">reset</button></h2>
 <div id="books"></div>
 </div>
-<div class="card" style="margin-top:12px"><h2><span>🛒 Bait &amp; rod shop</span><span style="font-weight:normal;font-size:12px;color:var(--mute)">sell catches → earn coins</span></h2><div id="sm"></div><div id="rods"></div><div id="shop"></div></div><div class="card" style="margin-top:12px"><h2>📖 Journal</h2><div id="jr"></div></div><div class="card" style="margin-top:12px"><h2>📘 Fish guide</h2><div id="guide"></div></div><div class="card" style="margin-top:12px"><h2><span>🏆 Achievements</span><span id="achc" style="font-weight:normal;font-size:12px;color:var(--mute)"></span></h2><div id="ach" class="book"></div></div><div id="toast"></div></main>
+<div class="card" style="margin-top:12px"><h2><span>🛒 Bait &amp; rod shop</span><span style="font-weight:normal;font-size:12px;color:var(--mute)">sell catches → earn coins</span></h2><div id="sm"></div><div id="rods"></div><div id="decor"></div><div id="shop"></div></div><div class="card" style="margin-top:12px"><h2>📖 Journal</h2><div id="jr"></div></div><div class="card" style="margin-top:12px"><h2>📘 Fish guide</h2><div id="guide"></div></div><div class="card" style="margin-top:12px"><h2><span>🏆 Achievements</span><span id="achc" style="font-weight:normal;font-size:12px;color:var(--mute)"></span></h2><div id="ach" class="book"></div></div><div class="card" style="margin-top:12px"><h2>💾 Save data</h2><p class="sub" style="margin:0 0 8px">Your progress is saved in this browser. Copy your save code to keep a backup or move to another device. Clearing browser data erases the save.</p><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="sm" id="exp">Copy save code</button><button class="sm" id="imp">Load from code</button></div><textarea id="cd" rows="3" style="width:100%;margin-top:8px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;font-size:12px" placeholder="Your save code appears here. To load a save, paste a code here and tap Load."></textarea><div id="cm"></div></div><div id="toast"></div></main>
 <script>
 const PONDS=[
 {n:'Meadow Pond',em:'🌼',u:0,col:[60,150,150],hc:[105,165,95],hill:'g',wv:1,spd:1,fish:[
@@ -89,7 +89,7 @@ function ui(){
     return `<h3>${p.em} ${p.n}</h3>`+(locked?`<div class="slot off">🔒 Unlocks after ${p.u} catches</div>`:
     `<div class="book">`+p.fish.map(f=>{all++;const c=S.got[key(p,f)]||0;if(c)have++;
       return `<div class="slot ${c?'':'off'}"><span class="em">${f.e}</span>${c?f.n+' ×'+c:'???'}${f.t==='n'?' 🌙':f.t==='d'?' ☀️':''}${f.x?' ★':''}</div>`}).join('')+`</div>`)}).join('');
-  document.getElementById('cnt').textContent='('+have+' found)';chk();baits();shop();rods();journal();guide();ach();
+  document.getElementById('cnt').textContent='('+have+' found)';chk();baits();shop();rods();decor();journal();guide();ach();
 }
 document.getElementById('reset').onclick=()=>{if(confirm('Clear your collection?')){S={got:{},pond:0,j:{},bait:'none',coins:25,inv:{worm:5,bread:3},rod:0,fl:{},ach:{},earned:0};save();ui()}};
 
@@ -159,11 +159,39 @@ const ACH=[
 {id:'a20',e:'📏',n:'Big One',d:'Land a fish over 60 cm',t:()=>Object.values(S.j).some(j=>j.best>60)},
 {id:'a21',e:'🦄',n:'Lucky Day',d:'Catch a very rare fish',t:()=>PONDS.some(p=>p.fish.some(f=>f.w<=1.5&&S.got[key(p,f)]))}];
 ACH.push({id:'a22',e:'✨',n:'Pond Legend',d:'Catch a ★ unique fish',t:()=>PONDS.some(p=>p.fish.some(f=>f.x&&S.got[key(p,f)]))},{id:'a23',e:'👑',n:'All Legends',d:'Catch every ★ unique fish',t:()=>PONDS.every(p=>p.fish.filter(f=>f.x).every(f=>S.got[key(p,f)]))});
+ACH.push({id:'a24',e:'🏡',n:'Cozy Dock',d:'Place 3 dock decorations',t:()=>Object.keys(S.deco||{}).length>=3},{id:'a25',e:'🎀',n:'Dream Dock',d:'Place every dock decoration',t:()=>Object.keys(S.deco||{}).length>=5});
 let tq=[],tb=0;
 function toast(x){tq.push(x);if(!tb)nextToast()}
 function nextToast(){const e=document.getElementById('toast'),x=tq.shift();if(!x){tb=0;e.style.opacity=0;return}tb=1;e.textContent=x;e.style.opacity=1;setTimeout(nextToast,3400)}
 function chk(){S.ach=S.ach||{};ACH.forEach(a=>{if(!S.ach[a.id]&&a.t()){S.ach[a.id]=1;toast('🏆 '+a.e+' '+a.n+': '+a.d)}});save()}
 function ach(){document.getElementById('ach').innerHTML=ACH.map(a=>{const o=S.ach[a.id];return `<div class="slot ${o?'':'off'}"><span class="em">${a.e}</span>${o?a.n:'???'}<br><small>${a.d}</small></div>`}).join('');document.getElementById('achc').textContent='('+ACH.filter(a=>S.ach[a.id]).length+'/'+ACH.length+')'}
+const DECO=[{id:'plant',e:'🪴',n:'Potted plant',c:20},{id:'hat',e:'🧢',n:'Fishing hat',c:40},{id:'lantern',e:'🏮',n:'Dock lantern',c:30,d:'Glows softly at night'},{id:'cat',e:'🐈',n:'Dock cat',c:80},{id:'boat',e:'🛶',n:'Little rowboat',c:150}];
+function decor(){const el=document.getElementById('decor');el.innerHTML='<div class="sub" style="margin:10px 0 0"><b>Dock decorations</b> (kept in every pond)</div>'+DECO.map(d=>{const o=(S.deco||{})[d.id];return `<div class="jr"><span class="em">${d.e}</span><div style="flex:1"><b>${d.n}</b><br>${d.d||'Decorates your dock'}</div>${o?'<span>✓ Placed</span>':`<button class="sm ${S.coins<d.c?'off':''}" data-d="${d.id}">${d.c} 🪙</button>`}</div>`}).join('');
+ el.querySelectorAll('button[data-d]').forEach(x=>x.onclick=()=>{const d=DECO.find(q=>q.id===x.dataset.d);if(S.coins<d.c)return say('sm','Not enough coins ('+S.coins+'/'+d.c+') for the '+d.n+'.');S.coins-=d.c;S.deco=S.deco||{};S.deco[d.id]=1;save();ui();say('sm','✅ Your dock now has a '+d.n+'. '+d.e)})}
+function decos(wl,k){const D=S.deco||{};ctx.save();ctx.textBaseline='bottom';ctx.textAlign='center';
+ if(D.plant){ctx.font='20px serif';ctx.fillText('🪴',W*.015+10,wl-3)}
+ if(D.cat){ctx.font='22px serif';ctx.fillText('🐈',W*.055,wl-3+Math.sin(t*1.5)*.8)}
+ if(D.hat){ctx.font='18px serif';ctx.fillText('🧢',W*.1+17,wl-28)}
+ if(D.boat){ctx.font='30px serif';ctx.fillText('🛶',W*.13,wl+40+Math.sin(t*1.2+1)*2)}
+ if(D.lantern){const x=W*.2,y=wl-18;ctx.fillStyle='#6b4a2f';ctx.fillRect(x-1,y,2,16);ctx.font='18px serif';ctx.fillText('🏮',x,y+2);
+  if(k<.6){const g=ctx.createRadialGradient(x,y-6,2,x,y-6,46);g.addColorStop(0,`rgba(255,200,100,${(1-k)*.55})`);g.addColorStop(1,'rgba(255,200,100,0)');ctx.fillStyle=g;ctx.fillRect(x-50,y-56,100,100)}}
+ ctx.restore()}
+let ss=null;
+function shoot(wl,k,dt){if(!ss&&k<.4&&wx.cloud<.7&&Math.random()<dt*.03){ss={t:0,x:W*(.2+Math.random()*.6),y:wl*(.05+Math.random()*.15)};toast('🌠 A shooting star. Make a wish.')}
+ if(ss){ss.t+=dt/.9;const q=ss.t,x=ss.x+q*220,y=ss.y+q*70,g=ctx.createLinearGradient(x-70,y-22,x,y);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,`rgba(255,255,255,${Math.max(0,1-q)})`);ctx.strokeStyle=g;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-70,y-22);ctx.lineTo(x,y);ctx.stroke();if(q>1)ss=null}}
+function life(wl,k){const h=PONDS[S.pond].hill,dk=1-k;ctx.save();ctx.textBaseline='bottom';ctx.textAlign='center';
+ if((h==='g'||h==='m'||h==='a')&&k>.3&&wx.rain<.3&&t%70<30){const m=t%70;ctx.globalAlpha=Math.min(1,m/3,(30-m)/3);ctx.font='22px serif';ctx.save();ctx.translate(W*.82,wl-2);ctx.rotate(Math.sin(t*.8)*.06);ctx.fillText('🦌',0,0);ctx.restore();ctx.globalAlpha=1}
+ const c=t%45;if(k>.4&&wx.rain<.5&&c<14){let x=W*.17,y=wl-5;if(c<2){const u=c/2;x=W*.5+(W*.17-W*.5)*u;y=wl-110+(wl-5-(wl-110))*u*u}else if(c>12){const u=(c-12)/2;x=W*.17+u*W*.4;y=wl-5-u*u*100}ctx.font='15px serif';ctx.fillText('🐦',x,y)}
+ if(dk>.4&&(h==='g'||h==='m')){ctx.fillStyle='rgb(255,240,120)';for(let i=0;i<14;i++){const x=(i*89%W)+Math.sin(t*.5+i)*25,y=wl-30+((i*37)%70)+Math.cos(t*.6+i*2)*10;ctx.globalAlpha=Math.max(0,(.4+.6*Math.sin(t*2+i))*dk);ctx.beginPath();ctx.arc(x,y,2,0,7);ctx.fill()}}
+ ctx.restore()}
+let musicOn=false,musG,mt=0,beat=0;
+const PROG=[[[60,64,67,71],36],[[57,60,64,67],33],[[53,57,60,64],29],[[55,59,62,64],31]],SC=[60,62,64,67,69,72,74,76];
+function mnote(m,d,v,ty='sine'){if(!musicOn||!nz||!musG)return;try{const n=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type=ty;o.frequency.value=440*Math.pow(2,(m-69)/12);g.gain.setValueAtTime(.0001,n);g.gain.exponentialRampToValueAtTime(v,n+.03);g.gain.exponentialRampToValueAtTime(.0001,n+d);o.connect(g);g.connect(musG);g.connect(rv);o.start(n);o.stop(n+d+.05)}catch(e){}}
+function musicTick(dt){if(!musicOn||!nz)return;mt-=dt;if(mt>0)return;mt=.78;const c=PROG[Math.floor(beat/4)%4],b=beat%4,n=night()?.7:1;
+ if(b===0){c[0].forEach((m,i)=>setTimeout(()=>mnote(m,3,.05*n,'triangle'),i*90));mnote(c[1],2.6,.08*n)}
+ if(b===2)mnote(c[1]+7,1.6,.05*n);
+ if(Math.random()<(b%2?.3:.5))mnote(SC[Math.floor(Math.random()*SC.length)],1.4,.045*n);
+ beat++}
 function guide(){const tt=total(),kk=PONDS.map(p=>tt>=p.u).join(),g=document.getElementById('guide');if(g._k===kk)return;g._k=kk;
  g.innerHTML=PONDS.map(p=>tt<p.u?`<div class="jr"><span class="em">🔒</span><div>${p.em} ${p.n}<br>Unlocks after ${p.u} catches</div></div>`:`<details><summary><b>${p.em} ${p.n}</b></summary>`+p.fish.map(f=>{const b=Object.keys(BAIT).filter(k=>k!=='none'&&likes(f,k)).map(k=>BAIT[k].e).join(' ')||'—';return `<div class="jr"><span class="em">${f.e}</span><div style="flex:1"><b>${f.n}</b>${f.x?' ★ only in this pond':''}<br>${f.t==='n'?'🌙 night only':f.t==='d'?'☀️ day only':'any time'}</div><div>${b}</div></div>`}).join('')+'</details>').join('')
  +'<details><summary><b>🪱 Bait cheat sheet</b></summary>'+Object.keys(BAIT).filter(k=>k!=='none').map(k=>`<div class="jr"><span class="em">${BAIT[k].e}</span><div style="flex:1"><b>${BAIT[k].n}</b><br>${PONDS.filter(p=>tt>=p.u).map(p=>p.em+' '+p.fish.filter(f=>likes(f,k)).map(f=>f.e).join('')).join('<br>')}</div></div>`).join('')+'</details>'}
@@ -318,6 +346,7 @@ function draw(dt){
   const g0=60+110*k,gr=[g0,g0+4,g0+10];top=L(top,gr,cl*.6);bot=L(bot,gr,cl*.5);
   let g=ctx.createLinearGradient(0,0,0,wl);g.addColorStop(0,C(top));g.addColorStop(1,C(bot));ctx.fillStyle=g;ctx.fillRect(0,0,W,wl);
   const sa=(1-k)*(1-cl*.9);if(sa>.02){ctx.fillStyle=`rgba(255,255,240,${sa})`;stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x*W,s.y*wl*.8,s.r*(.8+.3*Math.sin(t*2+s.x*50)),0,7);ctx.fill()})}
+  shoot(wl,k,dt);
   // sun & moon
   const sp=(day-.25)/.5,mp=((day+.25)%1)/.5;let bodies=[];
   if(sp>=0&&sp<=1)bodies.push({x:W*(.08+.84*sp),y:wl*(.85-.7*Math.sin(sp*Math.PI)),c:[255,240,190],r:24,a:1-cl*.7});
@@ -343,7 +372,7 @@ function draw(dt){
   ({j:jungleFront,g:meadowFront,m:lakeFront,s:seaFront,a:alpFront,f:frozenFront})[P.hill](wl,k);
   // dock & angler
   ctx.fillStyle=C(L([140,105,75],[10,10,20],.6*(1-k)));ctx.fillRect(0,wl-4,W*.22,10);ctx.fillRect(W*.04,wl+6,6,H*.16);ctx.fillRect(W*.16,wl+6,6,H*.16);
-  ctx.font='34px serif';ctx.textBaseline='bottom';ctx.fillText('🧑',W*.1,wl-2);
+  ctx.font='34px serif';ctx.textBaseline='bottom';ctx.fillText('🧑',W*.1,wl-2);decos(wl,k);life(wl,k);
   const tx=W*.17,ty=wl-70;ctx.strokeStyle='#5b4330';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(W*.13,wl-22);ctx.lineTo(tx,ty);ctx.stroke();
   // fishing logic
   if(state==='fly'||state==='reel'){
@@ -383,8 +412,15 @@ function hud(){const h=day*24,hh=Math.floor(h),mm=Math.floor((h%1)*60);
   document.getElementById('clock').textContent=ph+' · '+String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0');
   document.getElementById('wx').textContent=(PONDS[S.pond].hill==='f'&&wxName==='Rain')?'🌨 Snow':({Clear:'🌤',Cloudy:'☁️',Rain:'🌧',Fog:'🌫'})[wxName]+' '+wxName}
 document.getElementById('snd').onclick=function(){soundOn=!soundOn;if(soundOn)startAudio();if(ac&&ac.state==='suspended')ac.resume();this.textContent=soundOn?'🔊 Sound on':'🔇 Sound off';if(!soundOn&&nz){lapG.gain.value=0;rainG.gain.value=0;windG.gain.value=0}};
+const vol=document.getElementById('vol'),setVol=()=>{if(musG)musG.gain.value=(S.vol??40)/100*1.2};vol.value=S.vol??40;
+vol.oninput=()=>{S.vol=+vol.value;save();setVol()};
+document.getElementById('mus').onclick=function(){musicOn=!musicOn;if(musicOn){startAudio();if(ac&&ac.state==='suspended')ac.resume();if(!musG&&nz){musG=ac.createGain();musG.connect(out)}setVol()}this.textContent=musicOn?'🎵 Music on':'🎵 Music off'};
+const cd=document.getElementById('cd');
+document.getElementById('exp').onclick=()=>{const c=btoa(unescape(encodeURIComponent(JSON.stringify(S))));cd.value=c;cd.select();try{navigator.clipboard.writeText(c).then(()=>say('cm','✅ Save code copied.')).catch(()=>say('cm','The code is above. Select it and copy it.'))}catch(e){say('cm','The code is above. Select it and copy it.')}};
+document.getElementById('imp').onclick=()=>{try{const o=JSON.parse(decodeURIComponent(escape(atob(cd.value.trim()))));if(!o||typeof o.got!=='object'||typeof o.coins!=='number')throw 0;if(!confirm('Replace your current progress with this save?'))return;
+ S=Object.assign({got:{},pond:0,j:{},bait:'none',coins:25,inv:{worm:5,bread:3},rod:0,fl:{},ach:{},earned:0,deco:{}},o);if(!PONDS[S.pond])S.pond=0;state='idle';save();newShadows();ui();say('cm','✅ Save loaded.')}catch(e){say('cm','That code did not look right. Please copy it again in full.')}};
 newShadows();ui();let last=performance.now();
-(function loop(n){const dt=Math.min((n-last)/1000,.1);last=n;draw(dt);ambient(dt);hudT+=dt;if(hudT>.5){hudT=0;hud()}requestAnimationFrame(loop)})(last);
+(function loop(n){const dt=Math.min((n-last)/1000,.1);last=n;draw(dt);ambient(dt);musicTick(dt);hudT+=dt;if(hudT>.5){hudT=0;hud()}requestAnimationFrame(loop)})(last);
 </script>
 </body>
 </html>
