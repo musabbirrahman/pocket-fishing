@@ -2,7 +2,7 @@
 
 A cozy, relaxing browser fishing game. No install, no dependencies: just open `index.html`.
 
-**Play it:** https://musabbirrahman.github.io/pocket-fishing/
+**Play it:** https://YOUR-USERNAME.github.io/pocket-fishing/
 
 ![Pocket Fishing](screenshots/gameplay.png)
 
@@ -42,8 +42,8 @@ Fill your collection book with every fish. The journal records your biggest catc
 ![Journal](screenshots/journal.png)
 
 ## Features
-- 6 ponds with 64 collectibles, including an alpine lake and a frozen ice-fishing pond
-- Rod upgrades and 21 gentle achievements
+- 6 ponds with 70 collectibles, including an alpine lake and a frozen ice-fishing pond
+- Rod upgrades, 23 gentle achievements, a unique fish in every pond and an in-game fish guide
 - Fish that swim, notice bait, nibble and bite
 - Cast, bobber and reeling physics
 - Day/night cycle and changing weather
