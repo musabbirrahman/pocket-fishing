@@ -2,7 +2,7 @@
 
 A cozy, relaxing browser fishing game. No install, no dependencies: just open `index.html`.
 
-**Play it:** https://musabbirrahman.github.io/pocket-fishing/
+**Play it:** https://YOUR-USERNAME.github.io/pocket-fishing/
 
 ![Pocket Fishing](screenshots/gameplay.png)
 
@@ -23,7 +23,7 @@ Each pond has its own scenery, fish and water behavior.
 | ![Moonlit Sea](screenshots/moonlit-sea.png) | ![Jungle Lagoon](screenshots/jungle-lagoon.png) |
 | Lighthouse, sailboat, gulls and big waves. Fish are faster. | Dense canopy, waterfall, lily pads and fireflies at night. |
 
-Ponds unlock as you catch more fish.
+Ponds unlock as you catch more fish. Two newer ponds, Alpine Tarn and Frozen Pond, come later in the game.
 
 ## Day, night and weather
 A full day passes in about 2.5 minutes, and the weather drifts between clear, cloudy, rain and fog. Some fish only bite by day or night, and rain makes fish bite sooner.
@@ -42,7 +42,8 @@ Fill your collection book with every fish. The journal records your biggest catc
 ![Journal](screenshots/journal.png)
 
 ## Features
-- 4 ponds with 43 collectibles
+- 6 ponds with 64 collectibles, including an alpine lake and a frozen ice-fishing pond
+- Rod upgrades and 21 gentle achievements
 - Fish that swim, notice bait, nibble and bite
 - Cast, bobber and reeling physics
 - Day/night cycle and changing weather
