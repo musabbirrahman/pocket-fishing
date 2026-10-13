@@ -2,7 +2,7 @@
 
 A cozy, relaxing browser fishing game. No install, no dependencies: just open `index.html`.
 
-**Play it:** https://YOUR-USERNAME.github.io/pocket-fishing/
+**Play it:** https://musabbirrahman.github.io/pocket-fishing/
 
 ![Pocket Fishing](screenshots/gameplay.png)
 
