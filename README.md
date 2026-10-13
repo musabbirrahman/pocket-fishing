@@ -2,7 +2,7 @@
 
 A cozy, relaxing browser fishing game. No install, no dependencies: just open `index.html`.
 
-**Play it:** https://musabbirrahman.github.io/pocket-fishing/
+**Play it:** https://YOUR-USERNAME.github.io/pocket-fishing/
 
 ![Pocket Fishing](screenshots/gameplay.png)
 
@@ -43,7 +43,7 @@ Fill your collection book with every fish. The journal records your biggest catc
 
 ## Features
 - 6 ponds with 70 collectibles, including an alpine lake and a frozen ice-fishing pond
-- Rod upgrades, 25 gentle achievements, a unique fish in every pond, an in-game fish guide, soft generative music with a volume slider, dock decorations, ambient wildlife and shooting stars, and save export/import
+- Rod upgrades, 26 gentle achievements, a unique fish in every pond, an in-game fish guide, soft generative music with a volume slider, dock decorations, ambient wildlife and shooting stars, and seasons that change the scenery and weather mood, a gentle daily welcome gift, and save export/import
 - Fish that swim, notice bait, nibble and bite
 - Cast, bobber and reeling physics
 - Day/night cycle and changing weather
